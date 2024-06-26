@@ -118,6 +118,16 @@ DotPlot(gd_comp, features = c('GZMM', 'CCL5', 'ISG20', 'IFI44L', 'IFITM1', 'RSAD
 
 VlnPlot(gd_comp, features=c('FCGR3A'), cols=c('#941F81', '#FCEA1C'))
 
+# FIGURE 4F
+
+poscells <- WhichCells(object = gd, expression = FCGR3A > 0)
+gd$gd_logical <- ifelse(colnames(gd) %in% poscells, "Pos", "Neg")
+DimPlot(gd, group.by='gd_logical', cols=c('grey', 'purple'))
+Idents(gd) <- 'gd_logical'
+gd_markers <- FindMarkers(gd, ident.1='Pos', ident.2='Neg', min.pct=0.25)
+volcano_gd <- data.frame(row.names=row.names(gd_markers), log2FoldChange=gd_markers$avg_log2FC, pvalue=gd_markers$p_val_adj)
+EnhancedVolcano(volcano_gd, lab = rownames(volcano_gd), x = 'log2FoldChange', y = 'pvalue', title = 'Neg vs Pos', pCutoff = 0.05, FCcutoff = 0.58, pointSize = 3.0, labSize = 2.0, col=c('black', 'black', 'black', 'red3'), colAlpha = 1)
+
 # FIGURE 5A
 
 nk <- subset(mtbvac, idents=c('7'))
