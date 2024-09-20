@@ -38,6 +38,7 @@ DimPlot(pbmc.combined, cols=color)
 
 # IN DEPTH ANALYSIS OF MTBVAC DATASET 
 
+mtbvac <- run2
 mtbvac <- NormalizeData(mtbvac)
 mtbvac <- FindVariableFeatures(mtbvac, selection.method = "mean.var.plot")
 s.genes <- cc.genes$s.genes
