@@ -160,7 +160,3 @@ sc.pl.matrixplot(adata, markers, 'cluster', cmap='Reds', colorbar_title='scaled\
 nk_comp <- subset(pbmc.combined, idents=c('NK cell'))
 Idents(nk_comp) <- 'condition'
 DotPlot(nk_comp, features = c('TNFRSF18', 'IGFBP7', 'GRINA', 'NFKBIA', 'BATF', 'XCL1', 'XCL2', 'GZMB', 'BZW1', 'GSN')) + xlab('Gene') +  ylab('Cluster') + geom_point(aes(size=pct.exp), shape = 21, colour="black", stroke=0.5) + scale_colour_viridis(option="mako") + theme(axis.text.x = element_text(angle = 45, hjust=1)) + guides(size=guide_legend(override.aes=list(shape=21, colour="black", fill="white")))
-
-# FIGURE 6B
-
-FeaturePlot(mtbvac, features=c('IL6', 'IFNG', 'TNF', 'IL17A', 'IL17F', 'CXCL10', 'IL2', 'IL22', 'IL4'), order=TRUE)
